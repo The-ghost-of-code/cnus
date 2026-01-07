@@ -29,4 +29,8 @@ inline const char *get_os_name() {
 #endif
 }
 
+<<<<<<< HEAD
 #define CNUS_VERSION "0.0.1beta"
+=======
+#define CNUS_VERSION "0.0.1vBETA"
+>>>>>>> 4b119560c1d7cb997167b9dec0492c61775f4358
