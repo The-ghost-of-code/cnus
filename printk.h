@@ -45,4 +45,3 @@ void printk(Autodefine1 text1,const  Autodefine2* text2 = nullptr, const char* h
         }
     }
 }
-

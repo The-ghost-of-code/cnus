@@ -28,3 +28,5 @@ inline const char *get_os_name() {
     return "Unknown";
 #endif
 }
+
+#define CNUS_VERSION "0.0.1beta"

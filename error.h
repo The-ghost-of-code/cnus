@@ -3,7 +3,7 @@
 #define ERROR_H
 enum class ErrorCode {
     OUT_OF_MEMORY,
-    NONE,
+    DELETE_FAILED,
     INVALID_PARAMETER,
     FILE_NOT_FOUND,
     DIVZERO,
@@ -13,10 +13,10 @@ enum class ErrorCode {
 
 inline constexpr const char* to_string(ErrorCode ec) {
     switch (ec) {
-        case ErrorCode::NONE: return "No error";
         case ErrorCode::INVALID_PARAMETER: return "Invalid parameter";
         case ErrorCode::OUT_OF_MEMORY: return "Out of memory";
         case ErrorCode::FILE_NOT_FOUND: return "File not found";
+        case ErrorCode::DELETE_FAILED: return "Delete file failed";
         case ErrorCode::DIVZERO: return "Division by zero";
         case ErrorCode::CANT_OPEN_FILE: return "Cannot open file";
         default: return "Unknown error";
