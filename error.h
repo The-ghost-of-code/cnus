@@ -11,14 +11,14 @@ enum class ErrorCode {
 };
 #endif // ERROR_H
 
-inline constexpr const char* to_string(ErrorCode ec) {
+inline std::ostream& operator<<(std::ostream& os, ErrorCode ec) {
     switch (ec) {
-        case ErrorCode::INVALID_PARAMETER: return "Invalid parameter";
-        case ErrorCode::OUT_OF_MEMORY: return "Out of memory";
-        case ErrorCode::FILE_NOT_FOUND: return "File not found";
-        case ErrorCode::DELETE_FAILED: return "Delete file failed";
-        case ErrorCode::DIVZERO: return "Division by zero";
-        case ErrorCode::CANT_OPEN_FILE: return "Cannot open file";
-        default: return "Unknown error";
+        case ErrorCode::INVALID_PARAMETER:return os << "Invalid parameter"; break;
+        case ErrorCode::OUT_OF_MEMORY:return os << "Out of memory"; break;
+        case ErrorCode::FILE_NOT_FOUND:return os << "File not found"; break;
+        case ErrorCode::DELETE_FAILED:return os << "Delete file failed"; break;
+        case ErrorCode::DIVZERO: return os << "Division by zero";
+        case ErrorCode::CANT_OPEN_FILE: return os << "Cannot open file";
+        default: return os << "Unknown error";
     }
 }
