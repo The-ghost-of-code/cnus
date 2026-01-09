@@ -106,12 +106,12 @@ double integral(std::string func, double a, double b) {
     }
     if (func == "sin(x)") {
         // integral of sin(x) is -cos(x)
-        double result = -math_basic::cosin(b) + math_basic::cosin(a);
+        double result = -math_basic::cosin(math_basic::reg_to_rad(b)) + math_basic::cosin(math_basic::reg_to_rad(a));
         return result;
     }
     if (func == "cos(x)") {
         // integral of cos(x) is sin(x)
-        double result = math_basic::sin(b) - math_basic::sin(a);
+        double result = math_basic::sin(math_basic::reg_to_rad(b)) - math_basic::sin(math_basic::reg_to_rad(a));
         return result;
     }
     if (func == "e^x") {
