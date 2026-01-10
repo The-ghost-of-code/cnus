@@ -91,6 +91,9 @@ void derivative(std::string func) {
     else if (func == "1/x") {
         printk("-1/x^2");
     }
+    else if (func == "tan(x)") {
+        printk("sec^2(x)");
+    }
     // add more functions as needed, add here
     else {
         printk("Derivative not found in database.");

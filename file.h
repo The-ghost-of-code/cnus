@@ -65,3 +65,40 @@ void file_delete(const std::filesystem::path& path) {
         printk(e.what());
     }
 }
+void copy_file(const std::filesystem::path& from, const std::filesystem::path& to) {
+    if (!fileEx(from)) {
+        printk(ErrorCode::FILE_NOT_FOUND);
+        return;
+    }
+    if (fileEx(to)) {
+        printk("Are you sure you want to overwrite the existing file? (y/n)");
+        char response;
+        std::cin >> response;
+        if (response != 'y' && response != 'Y') {
+            printk(ErrorCode::ANOTHER_FILE);
+            return;
+        }
+        else {
+            try {
+                std::filesystem::copy(from, to, std::filesystem::copy_options::overwrite_existing);
+            } catch (const std::filesystem::filesystem_error& e) {
+                printk(ErrorCode::CANT_OPEN_FILE);
+                printk(e.what());
+            }
+            printk("File copied and overwritten successfully");
+        }
+    }
+    else {
+        try {
+            auto parent_path = to.parent_path();
+            if (!parent_path.empty()) {
+                std::filesystem::create_directories(parent_path);
+            }
+            std::filesystem::copy(from, to, std::filesystem::copy_options::overwrite_existing);
+        } catch (const std::filesystem::filesystem_error& e) {
+            printk(ErrorCode::CANT_OPEN_FILE);
+            printk(e.what());
+        }
+        printk("File copied successfully");
+    }
+}

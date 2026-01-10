@@ -1,0 +1,15 @@
+Hello, this is the file that explains error codes
+
+Begin:
+
+    from file.h:
+        code -1.0: cannot open file
+        code -2.0: cannot found file
+        code 0: sucessfully but with default answer (logic or idk?)
+        no code: sucessfully run!
+        code -3.0: delete file failed
+(error codes will be updated)
+
+    from mathemathic.h:
+        code -1: error divide by zero
+        code -2: integral not found
