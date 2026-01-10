@@ -15,7 +15,7 @@ namespace math_basic {
     double divide(double a, double b) {
         if (b == 0) {
             printk(ErrorCode::DIVZERO);
-            return 0;
+            return -1;
         }
         return a / b;
     }
@@ -130,6 +130,6 @@ double integral(std::string func, double a, double b) {
     
     else {
         printk("Integral not found in database.");
-        return 0;
+        return -2;
     }
 }

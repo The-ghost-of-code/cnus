@@ -30,7 +30,7 @@ void file_open(const std::filesystem::path& path) {
 double file_size(const std::filesystem::path& path, const char * convert_to = "KB") {
     if (!fileEx(path)) {
         printk(ErrorCode::FILE_NOT_FOUND);
-        return -1.0;
+        return -2.0;
     }
     auto size_in_bytes = std::filesystem::file_size(path);
     if (size_in_bytes == static_cast<uintmax_t>(-1)) {
@@ -49,7 +49,7 @@ double file_size(const std::filesystem::path& path, const char * convert_to = "K
     if (convert_to == "GB") {
         return static_cast<double>(size_in_bytes) / (1024 * 1024 * 1024);
     }
-    return -1.0;
+    return 0.0;
 }
 
 void file_delete(const std::filesystem::path& path) {
@@ -63,6 +63,7 @@ void file_delete(const std::filesystem::path& path) {
     } catch (const std::filesystem::filesystem_error& e) {
         printk(ErrorCode::DELETE_FAILED);
         printk(e.what());
+        return;
     }
 }
 void copy_file(const std::filesystem::path& from, const std::filesystem::path& to) {
