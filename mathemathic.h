@@ -22,6 +22,19 @@ namespace math_basic {
     double reg_to_rad(double degree) {
         return degree * (PI / 180.0);
     }
+    double sqrt(double x) {
+        if (x < 0) {
+            printk(ErrorCode::SQRT_NEGATIVE);
+            return -4;
+        }
+        else {
+            double guess = x / 2.0;
+            for (int i = 0; i < 20; ++i) {
+                guess = (guess + x / guess) / 2.0;
+            }
+            return guess;
+        }
+    }
     double sin(double x) {
         double term = x;
         double sum = x;
@@ -133,3 +146,40 @@ double integral(std::string func, double a, double b) {
         return -2;
     }
 }
+
+namespace vector{
+
+    namespace vector2d
+    {
+        struct {
+            double x;
+            double y;
+        } point;
+        double multiply_vector(double x1, double y1, double x2, double y2) {
+            return x1 * x2 + y1 * y2;
+        }
+        void addition_vector(double x1, double y1, double x2, double y2) {
+            printk("(", x1 + x2);
+            printk(", ", y1 + y2);
+            printk(")");
+        }
+        void subtraction_vector(double x1, double y1, double x2, double y2) {
+            printk("(", x1 - x2);
+            printk(", ", y1 - y2);
+            printk(")");
+        }
+        void scalar_multiply_vector(double scalar, double x1, double y1) {
+            printk("(", scalar * x1);
+            printk(", ", scalar * y1);
+            printk(")");
+        }
+        double vector_length(double x1, double y1) {
+            double length = math_basic::sqrt(x1 * x1 + y1 * y1);
+            return length;
+        }
+        double distance_between_points(double x1, double y1, double x2, double y2) {
+            double distance = math_basic::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+            return distance;
+        }
+    };
+};
