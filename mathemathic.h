@@ -155,6 +155,11 @@ namespace vector{
             double x;
             double y;
         } point;
+        inline std::pair<double, double> vector_point(double x, double y) {
+            vector2d::point.x = x;
+            vector2d::point.y = y;
+            return std::make_pair(vector2d::point.x, vector2d::point.y);
+        }
         double multiply_vector(double x1, double y1, double x2, double y2) {
             return x1 * x2 + y1 * y2;
         }

@@ -30,7 +30,7 @@ void check_free_ram() {
             printk("RAM available: ");
             printk(freeRam, " MB");
         }
-    #elif defined(__linux__)
+    #elif defined(__linux__) 
         struct sysinfo memInfo;
         sysinfo(&memInfo);
         long long freeRam = memInfo.freeram / (1024 * 1024); // in MB
