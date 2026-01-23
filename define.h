@@ -29,6 +29,11 @@ inline const char *get_os_name() {
 #endif
 }
 
-#define CNUS_VERSION "0.0.4vBETA"
+#define CNUS_VERSION "0.0.5vBETA"
 
-#define auto_display void display() {glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);glutSwapBuffers();}
+#define auto_display void display() {glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);glutSwapBuffers();}\
+
+#define C_RED "\033[31m"
+#define C_GREEN "\033[32m"
+#define C_YELLOW "\033[33m"
+#define C_RESET "\033[0m"

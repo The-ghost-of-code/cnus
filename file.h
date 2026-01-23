@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <cstdlib>
 #include "define.h"
+#include "error.h"
 
 bool fileEx(const std::filesystem::path& path) {
     return std::filesystem::exists(path);

@@ -1,4 +1,5 @@
 #include "printk.h"
+#include "error.h"
 
 namespace math_basic {
     constexpr double PI = 3.141592653589793;
@@ -147,15 +148,14 @@ double integral(std::string func, double a, double b) {
     }
 }
 
-namespace vector{
 
-    namespace vector2d
+namespace vector2d
     {
         struct {
             double x;
             double y;
         } point;
-        inline std::pair<double, double> vector_point(double x, double y) {
+        inline std::pair<double, double> vector(double x, double y) {
             vector2d::point.x = x;
             vector2d::point.y = y;
             return std::make_pair(vector2d::point.x, vector2d::point.y);
@@ -163,20 +163,14 @@ namespace vector{
         double multiply_vector(double x1, double y1, double x2, double y2) {
             return x1 * x2 + y1 * y2;
         }
-        void addition_vector(double x1, double y1, double x2, double y2) {
-            printk("(", x1 + x2);
-            printk(", ", y1 + y2);
-            printk(")");
+        auto addition_vector(double x1, double y1, double x2, double y2) {
+            return vector(x1 + x2, y1 + y2);
         }
-        void subtraction_vector(double x1, double y1, double x2, double y2) {
-            printk("(", x1 - x2);
-            printk(", ", y1 - y2);
-            printk(")");
+        auto subtraction_vector(double x1, double y1, double x2, double y2) {
+            return vector(x1 - x2, y1 - y2);
         }
-        void scalar_multiply_vector(double scalar, double x1, double y1) {
-            printk("(", scalar * x1);
-            printk(", ", scalar * y1);
-            printk(")");
+        auto scalar_multiply_vector(double scalar, double x1, double y1) {
+            return vector(scalar * x1, scalar * y1);
         }
         double vector_length(double x1, double y1) {
             double length = math_basic::sqrt(x1 * x1 + y1 * y1);
@@ -186,5 +180,4 @@ namespace vector{
             double distance = math_basic::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
             return distance;
         }
-    };
 };

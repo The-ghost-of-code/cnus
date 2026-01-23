@@ -1,4 +1,5 @@
 // this file will contain error handling definitions
+#include <ostream>
 #ifndef ERROR_H
 #define ERROR_H
 enum class ErrorCode {
@@ -9,7 +10,6 @@ enum class ErrorCode {
     DIVZERO,
     CANT_OPEN_FILE
 };
-#endif // ERROR_H
 
 inline std::ostream& operator<<(std::ostream& os, ErrorCode ec) {
     switch (ec) {
@@ -22,3 +22,4 @@ inline std::ostream& operator<<(std::ostream& os, ErrorCode ec) {
         default: return os << "Unknown error";
     }
 }
+#endif 
