@@ -9,4 +9,4 @@ void printk(T first, Args... args) {
     std::cout << first;
     printk(args...);
 }
- // update and make file simpler to read and free little storage in compiling
+ // update and make file simpler to read and free little storage when compiling
