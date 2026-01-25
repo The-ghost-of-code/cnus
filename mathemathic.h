@@ -151,33 +151,40 @@ double integral(std::string func, double a, double b) {
 
 namespace vector2d
     {
-        struct {
-            double x;
-            double y;
-        } point;
-        inline std::pair<double, double> vector(double x, double y) {
-            vector2d::point.x = x;
-            vector2d::point.y = y;
-            return std::make_pair(vector2d::point.x, vector2d::point.y);
-        }
-        double multiply_vector(double x1, double y1, double x2, double y2) {
-            return x1 * x2 + y1 * y2;
-        }
-        auto addition_vector(double x1, double y1, double x2, double y2) {
-            return vector(x1 + x2, y1 + y2);
-        }
-        auto subtraction_vector(double x1, double y1, double x2, double y2) {
-            return vector(x1 - x2, y1 - y2);
-        }
-        auto scalar_multiply_vector(double scalar, double x1, double y1) {
-            return vector(scalar * x1, scalar * y1);
-        }
-        double vector_length(double x1, double y1) {
-            double length = math_basic::sqrt(x1 * x1 + y1 * y1);
-            return length;
-        }
-        double distance_between_points(double x1, double y1, double x2, double y2) {
-            double distance = math_basic::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-            return distance;
-        }
+        struct point {
+        double x;
+        double y;
+    };
+
+    inline point vector(double x, double y) {
+        return point{x, y};
+    }
+
+    // dot product
+    inline double dot_vec(const point& a, const point& b) {
+        return a.x * b.x + a.y * b.y;
+    }
+
+    inline point add_vec(const point& a, const point& b) {
+        return vector(a.x + b.x, a.y + b.y);
+    }
+
+    inline point sub_vec(const point& a, const point& b) {
+        return vector(a.x - b.x, a.y - b.y);
+    }
+
+    inline point scalar_multiply_vector(double k, const point& v) {
+        return vector(k * v.x, k * v.y);
+    }
+
+    inline double vec_length(const point& v) {
+        return math_basic::sqrt(v.x * v.x + v.y * v.y);
+    }
+
+    inline double vec_distance(const point& a, const point& b) {
+        return math_basic::sqrt(
+            (b.x - a.x) * (b.x - a.x) +
+            (b.y - a.y) * (b.y - a.y)
+        );
+    }
 };
