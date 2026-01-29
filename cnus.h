@@ -4,3 +4,4 @@
 #include "memory.h"
 #include "mathemathic.h"
 #include "input.h"
+#include "cnusstring.h"

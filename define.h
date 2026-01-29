@@ -44,3 +44,5 @@ inline const char *get_os_name() {
 #define C_BACKGROUND_RED "\033[41m"
 #define C_BACKGROUND_GREEN "\033[42m"
 #define C_UNDER_RED "\033[4;31"
+
+#define to_complex(x) to_string(x.real) + "+" + to_string(x.imag) + "i"
