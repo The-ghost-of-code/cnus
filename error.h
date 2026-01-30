@@ -8,7 +8,8 @@ enum class ErrorCode {
     SQRT_NEGATIVE,
     FILE_NOT_FOUND,
     DIVZERO,
-    CANT_OPEN_FILE
+    CANT_OPEN_FILE,
+    NO_SOLUTION
 };
 
 inline std::ostream& operator<<(std::ostream& os, ErrorCode ec) {
@@ -19,6 +20,7 @@ inline std::ostream& operator<<(std::ostream& os, ErrorCode ec) {
         case ErrorCode::DIVZERO: return os << "Division by zero"; break;
         case ErrorCode::CANT_OPEN_FILE: return os << "Cannot open file";break;
         case ErrorCode::SQRT_NEGATIVE: return os << "Square root of negative number";break;
+        case ErrorCode::NO_SOLUTION: return os << "No solution for this quadratic equation";break;
         default: return os << "Unknown error";
     }
 }

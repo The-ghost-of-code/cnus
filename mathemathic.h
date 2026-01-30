@@ -190,60 +190,29 @@ namespace vector2d
     }
 };
 
-struct complex {
-    double real = 0;
-    double imag = 0;
-};
-using namespace std;
-bool parseComplex(const string& s, complex& c) {
-    string str = s;
-
-    // xóa khoảng trắng (nếu có)
-    str.erase(remove(str.begin(), str.end(), ' '), str.end());
-
-    size_t pos_i = str.find('i');
-
-    // chỉ số thực
-    if (pos_i == string::npos) {
-        stringstream ss(str);
-        if (!(ss >> c.real)) return false;
-        c.imag = 0;
-        return ss.eof();
+double quadratic_func(double a, double b, double c, const char * root = nullptr) {
+    const double delta = (b*b) - 4*a*c;
+    double root1 = 0;
+    double root2 = 0;
+    if (delta < 0) {
+        printk(ErrorCode::NO_SOLUTION);
+        return -1;
     }
-
-    // chỉ số ảo: 4i
-    if (pos_i == str.size() - 1 && (str.find('+') == string::npos && str.find('-', 1) == string::npos)) {
-        string t = str.substr(0, pos_i);
-        if (t == "" || t == "+") c.imag = 1;
-        else if (t == "-") c.imag = -1;
-        else {
-            stringstream ss(t);
-            if (!(ss >> c.imag)) return false;
+    if (delta == 0) {
+        return -b / (2*a);
+    }
+    if (delta > 0) {
+        root1 = (-b + math_basic::sqrt(delta)) / (2*a);
+        root2 = (-b - math_basic::sqrt(delta)) / (2*a);
+        if (root == nullptr) {
+            return root1;
         }
-        c.real = 0;
-        return true;
+        else if (root == "1" || root == "root1" || root == "root 1") {
+            return root1;
+        }
+        else if(root == "2" || root == "root2" || root == "root 2") {
+            return root2;
+        }
     }
-
-    // dạng a+bi hoặc a-bi
-    size_t pos = str.find_last_of("+-", pos_i - 1);
-    if (pos == string::npos) return false;
-
-    string r = str.substr(0, pos);
-    string im = str.substr(pos, pos_i - pos);
-
-    stringstream ss1(r), ss2(im);
-    if (!(ss1 >> c.real)) return false;
-    if (!(ss2 >> c.imag)) return false;
-
-    return true;
-}
-
-istream& operator>>(istream& in, complex& c) {
-    string s;
-    in >> s;
-
-    if (!parseComplex(s, c)) {
-        in.setstate(ios::failbit); // báo lỗi input
-    }
-    return in;
+    return root1;
 }
